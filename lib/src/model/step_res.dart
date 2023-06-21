@@ -1,14 +1,14 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
-class StepsRes{
+class StepRes{
   LatLng startLocation;
   LatLng endLocation;
 
-  StepsRes({required this.startLocation, required this.endLocation});
+  StepRes({required this.startLocation, required this.endLocation});
 
-  factory StepsRes.fromJson(Map<String, dynamic> json) {
-    return StepsRes(
+  factory StepRes.fromJson(Map<String, dynamic> json) {
+    return StepRes(
         startLocation:
             LatLng(json["start_location"]["lat"], json["start_location"]["lng"]),
         endLocation:

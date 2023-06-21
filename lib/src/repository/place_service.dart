@@ -1,5 +1,6 @@
 import 'package:taxi_app/src/model/place_item_res.dart';
 import 'package:http/http.dart' as http;
+import 'package:taxi_app/src/model/trip_info_res.dart';
 import 'dart:convert';
 import 'dart:async';
 
@@ -48,7 +49,7 @@ class PlaceService {
     var qaz= Uri.parse(url);
     print("url call: $url");
 
-    final JsonDecoder _decoder = new JsonDecoder();
+    final JsonDecoder _deCoder = JsonDecoder();
     return http.get(qaz).then((http.Response response) {
       String res = response.body;
       int statusCode = response.statusCode;
@@ -58,30 +59,30 @@ class PlaceService {
         throw Exception(res);
       }
 
-      List<StepsRes> steps = [];
-      // TripInfoRes tripInfoRes;
+      List<StepRes> steps = [];
+      TripInfoRes tripInfoRes;
       try {
-        var json = _decoder.convert(res);
+        var json = _deCoder.convert(res);
         int distance = json["routes"][0]["legs"][0]["distance"]["value"];
         steps = _parseSteps(json["routes"][0]["legs"][0]["steps"]);
 
-        // tripInfoRes = new TripInfoRes(distance, steps);
+        print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa $distance');
+
+        tripInfoRes = TripInfoRes(distance, steps);
 
       } catch (e) {
         throw Exception(res);
       }
-      print('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz $steps');
-      return steps;
-      // return tripInfoRes;
+      // return steps;
+      return tripInfoRes;
     });
   }
 
-   static List<StepsRes> _parseSteps(final responseBody) {
+   static List<StepRes> _parseSteps(final responseBody) {
      var list = responseBody
-         .map<StepsRes>((json) => StepsRes.fromJson(json))
+         .map<StepRes>((json) => StepRes.fromJson(json))
          .toList();
 
-     print('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj $list');
      return list;
    }
 }

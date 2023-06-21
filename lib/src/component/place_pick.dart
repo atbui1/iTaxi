@@ -1,18 +1,18 @@
 
 import 'package:flutter/material.dart';
-import 'package:taxi_app/src/screens/ride_picker_page.dart';
+import 'package:taxi_app/src/screens/place_pick_page.dart';
 
 import '../model/place_item_res.dart';
 
-class RidePicker extends StatefulWidget {
+class PlacePick extends StatefulWidget {
 
   final Function(PlaceItemRes, bool) onSelected;
-  RidePicker(this.onSelected);
+  PlacePick(this.onSelected);
 
   @override
   State<StatefulWidget> createState() {
     // throw UnimplementedError();
-    return _RidePicker();
+    return _PlacePickState();
   }
 
 
@@ -20,7 +20,7 @@ class RidePicker extends StatefulWidget {
   // _RidePicker createState() => _RidePicker();
 }
 
-class _RidePicker extends State<RidePicker> {
+class _PlacePickState extends State<PlacePick> {
 
     PlaceItemRes? fromAddressQAZ;
     PlaceItemRes? toAddressQAZ;
@@ -63,9 +63,9 @@ class _RidePicker extends State<RidePicker> {
             child: ElevatedButton(
               onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => RidePickerPage(
+                    builder: (context) => PlacePickPage(
                         // {fromAddressQAZ!.name} == null ? "from null" : 'fromAddressQAZ!.name',
-                        fromAddressQAZ == null ? "sc" : fromAddressQAZ!.name,
+                        fromAddressQAZ == null ? "" : fromAddressQAZ!.name,
                         // fromAddressQAZ == null ? "" : fromAddressQAZ!.name,
                             (place, isFrom) {
                           widget.onSelected(place, isFrom);
@@ -110,7 +110,7 @@ class _RidePicker extends State<RidePicker> {
                      Padding(
                       padding: const EdgeInsets.only(left: 50, right: 50),
                       child: Text(
-                        fromAddressQAZ == null ? "From Location qaz null" : fromAddressQAZ!.name,
+                        fromAddressQAZ == null ? "From" : fromAddressQAZ!.name,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 17),
                       ),
@@ -129,7 +129,7 @@ class _RidePicker extends State<RidePicker> {
               onPressed: (){
                 print("_goToChoicePlaceEnd");
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => RidePickerPage(
+                    builder: (context) => PlacePickPage(
                         toAddressQAZ == null ? "" : toAddressQAZ!.name,
                             (place, isFrom) {
                           widget.onSelected(place, isFrom);
@@ -166,7 +166,7 @@ class _RidePicker extends State<RidePicker> {
                       padding: const EdgeInsets.only(left: 50, right: 50),
                       child: Text(
                         // "cong vien gia dinh phu nhuan",
-                        toAddressQAZ == null ? "ToLocation" : toAddressQAZ!.name,
+                        toAddressQAZ == null ? "To" : toAddressQAZ!.name,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 17),
                       ),

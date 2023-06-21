@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_app/src/component/home_menu.dart';
-import 'package:taxi_app/src/component/ride_picker.dart';
+import 'package:taxi_app/src/component/place_pick.dart';
 import 'dart:ui' as ui;
 
 import 'package:flutter/services.dart';

@@ -57,7 +57,7 @@ class _LoginPage extends State<LoginPage> {
                     padding: const EdgeInsets.all(20),
                     margin: const EdgeInsets.all(20),
                     child: const Text(
-                      "Hello\nWelcome back",
+                      "Hello\nWelcome iTaxi",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
